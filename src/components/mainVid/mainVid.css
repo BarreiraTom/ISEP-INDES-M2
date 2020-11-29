@@ -1,0 +1,29 @@
+.mainVideo{
+    background-color: #CCC4;
+    border: 1px #CCC solid;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    margin: auto;
+    width: 90%;
+    height: 60vh;
+}
+
+.mainVideo *{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 0;bottom: 0;left: 0;right: 0;
+}
+
+.mainDesc{
+    width: 90%;
+    margin: auto;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18pt;
+    font-weight: 800;
+    color: white;
+}
