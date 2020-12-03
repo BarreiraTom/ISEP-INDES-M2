@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 
 import './../miniatureVid.css';
 
-export default function sourceVid(props) {
+export default function SourceVid(props) {
 
     switch (props.source.type) {
         case "webcam":
             // Set constraints for the video stream
-            var constraints = { video: { facingMode: "user", deviceId: props.source.desc }, audio: false };
+            var constraints = { video: { facingMode: "user"}, audio: false };
 
             // Access the device camera and stream to cameraView
-            function cameraStart(el) {
+            const cameraStart = (el, teste) => {
                 // Define constants
                 const cameraView = document.querySelector("#camera-view-"+props.source.name)
+                debugger
 
                 navigator.mediaDevices
                     .getUserMedia(constraints)
@@ -25,12 +26,16 @@ export default function sourceVid(props) {
                 });
             }
 
+            const yes = ()=>{
+                console.log("YES");
+            }
+
             return(
                 <>
                     {/* <!-- Camera sensor --> */}
                     <canvas id={"camera-sensor-"+props.source.name}></canvas>
                     {/* <!-- Camera view --> */}
-                    <video id={"camera-view-"+props.source.name} autoplay playsinline onLoad={cameraStart.bind(this)}></video>
+                    <video id={"camera-view-"+props.source.name} autoplay playsinline onLoad={yes.bind()}></video>
                 </>
             );
             break;
@@ -52,9 +57,35 @@ export default function sourceVid(props) {
             break;
 
         case "youtube":
+            let videosrc = props.source.desc.match("v=")!=null ? props.source.desc.split("v=")[1] : props.source.desc
+
+            // function onYouTubeIframeAPIReady(YT) {
+            //     var player;
+            //     player = new YT.Player("miniYT-"+props.source.name, {
+            //       videoId: videosrc, // YouTube Video ID
+            //       playerVars: {
+            //         autoplay: 1,        // Auto-play the video on load
+            //         controls: 0,        // Show pause/play buttons in player
+            //         showinfo: 0,        // Hide the video title
+            //         modestbranding: 1,  // Hide the Youtube Logo
+            //         loop: 1,            // Run the video in a loop
+            //         fs: 1,              // Hide the full screen button
+            //         cc_load_policy: 1, // Hide closed captions
+            //         iv_load_policy: 3,  // Hide the Video Annotations
+            //         autohide: 0         // Hide video controls when playing
+            //       },
+            //       events: {
+            //         onReady: function(e) {
+            //           e.target.mute();
+            //         }
+            //       }
+            //     });
+            //    }
+
             return(
                 <>
-                
+                    <iframe src={"https://www.youtube.com/embed/"+videosrc+"?controls=0&autoplay=1&mute=1"} frameborder="0" allow="autoplay; clipboard-write; encrypted-media; gyroscope;" volume="0"></iframe>~
+                    {/* <div id={"miniYT-"+props.source.name} onLoad={onYouTubeIframeAPIReady.bind(this, "YT")}></div> */}
                 </>
             );
             break;
@@ -62,7 +93,7 @@ export default function sourceVid(props) {
         case "twitch":
             return(
                 <>
-                    <iframe id={"twitch-"+props.source.name} src={"https://player.twitch.tv/?channel="+props.source.desc+"&parent=localhost"} frameborder="0" allowfullscreen="false" scrolling="no"></iframe>
+                    <iframe id={"twitch-"+props.source.name} src={"https://player.twitch.tv/?channel="+props.source.desc+"&parent=localhost"+"&muted=true&autoplay=true&controls=0"} frameborder="0" allowfullscreen="false" scrolling="no"></iframe>
                 </>
             );
             break;
@@ -70,7 +101,7 @@ export default function sourceVid(props) {
         default:
             return (
                 <>
-                    <i class="fa fa-plus"></i>
+                    <i className="fa fa-plus"></i>
                 </>
                 );
             break;

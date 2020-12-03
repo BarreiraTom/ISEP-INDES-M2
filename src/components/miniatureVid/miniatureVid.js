@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from 'react';
 
 import './miniatureVid.css';
-import scrVideo from './sourceVid/sourceVid';
+import ScrVideo from './sourceVid/sourceVid';
 
-export default function miniatureVid(props) {
+export default function MiniatureVid(props) {
 
-    const [sources, setSources] = useState(props.sources);
+    const [sources, setSources] = useState([...props.sources,{type:"none"}]);
 
-    setSources(...sources,{type:""})
+
+
+    // useEffect(()=>{
+    //     let tempSrcs = props.sources.map((src)=>{if (props.mainSource!=src){return src}});
+    //     setSources([props.mainSource,...tempSrcs, {type:"none"}]);
+    // })
 
     return (
-        <div className="miniatureVid">
-            {sources.map(src => {
-                return(
-                    <>
-                        <scrVideo source={src}/>
-                        <h3 className="miniatureDesc">{src.name}</h3>
-                    </>
-                );
-            })}
+        <div id="miniVids">
+            <div id="miniSources">
+                {sources.map((src, key) => {
+                    return(
+                        <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this,src)}>
+                            <div className={"miniatureVid"+(props.mainSource==src ? " active" : "")}>
+                                <div className="screenBlock"></div>
+                                <ScrVideo source={src}/>
+                            </div>
+                            <h3 className="miniatureDesc">{src.name ? src.name : ""}</h3>
+                        </div>
+                    );
+                })}
+            </div>  
         </div>
     );
 }
