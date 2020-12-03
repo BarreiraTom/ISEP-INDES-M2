@@ -18,6 +18,15 @@
     top: 0;bottom: 0;left: 0;right: 0;
 }
 
+.noDisplay{
+    margin: auto;
+    text-align: center;
+    font-size: 30pt;
+    height: 45pt;
+    font-family: 'Poppins', sans-serif;
+    color: #EEE;
+  }
+
 .mainDesc{
     width: 90%;
     margin: auto;
