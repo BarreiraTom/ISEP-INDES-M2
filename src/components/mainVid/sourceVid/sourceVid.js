@@ -1,39 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import Webcam from "react-webcam";
 
 import './../mainVid.css';
 
 export default function SourceVid(props) {
 
+    const webcamRef = React.useRef(null);
+
     switch (props.source.type) {
         case "webcam":
-            // Set constraints for the video stream
-            var constraints = { video: { facingMode: "user", deviceId: props.source.desc }, audio: false };
-
-            // Access the device camera and stream to cameraView
-            function cameraStart(el) {
-                // Define constants
-                const cameraView = document.querySelector("#camera-view-"+props.source.name)
-
-                navigator.mediaDevices
-                    .getUserMedia(constraints)
-                    .then(function(stream) {
-                    //track = stream.getTracks()[0];
-                    cameraView.srcObject = stream;
-                })
-                .catch(function(error) {
-                    console.error("Oops. Something is broken.", error);
-                });
-            }
+            const videoConstraints = {
+                width: 1920,
+                height: 1080,
+                facingMode: "user"
+              };
 
             return(
                 <>
                     {/* <!-- Camera sensor --> */}
                     <canvas id={"camera-sensor-"+props.source.name}></canvas>
                     {/* <!-- Camera view --> */}
-                    <video id={"camera-view-"+props.source.name} autoplay playsinline onLoad={cameraStart.bind(this)}></video>
+                    <Webcam height={1080} width={1920} audio={false} ref={webcamRef} videoConstraints={videoConstraints}/>
                 </>
             );
-            break;
 
         case "ipCam":
             return(

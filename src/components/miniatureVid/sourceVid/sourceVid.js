@@ -1,41 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import Webcam from "react-webcam";
 
 import './../miniatureVid.css';
 
 export default function SourceVid(props) {
 
+    const webcamRef = React.useRef(null);
+
     switch (props.source.type) {
         case "webcam":
-            // Set constraints for the video stream
-            var constraints = { video: { facingMode: "user"}, audio: false };
-
-            // Access the device camera and stream to cameraView
-            const cameraStart = (el, teste) => {
-                // Define constants
-                const cameraView = document.querySelector("#camera-view-"+props.source.name)
-                debugger
-
-                navigator.mediaDevices
-                    .getUserMedia(constraints)
-                    .then(function(stream) {
-                    //track = stream.getTracks()[0];
-                    cameraView.srcObject = stream;
-                })
-                .catch(function(error) {
-                    console.error("Oops. Something is broken.", error);
-                });
-            }
-
-            const yes = ()=>{
-                console.log("YES");
-            }
-
             return(
                 <>
                     {/* <!-- Camera sensor --> */}
                     <canvas id={"camera-sensor-"+props.source.name}></canvas>
                     {/* <!-- Camera view --> */}
-                    <video id={"camera-view-"+props.source.name} autoplay playsinline onLoad={yes.bind()}></video>
+                    <Webcam audio={false} ref={webcamRef} />
                 </>
             );
             break;

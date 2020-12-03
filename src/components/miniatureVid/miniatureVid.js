@@ -7,8 +7,6 @@ export default function MiniatureVid(props) {
 
     const [sources, setSources] = useState([...props.sources,{type:"none"}]);
 
-
-
     // useEffect(()=>{
     //     let tempSrcs = props.sources.map((src)=>{if (props.mainSource!=src){return src}});
     //     setSources([props.mainSource,...tempSrcs, {type:"none"}]);
