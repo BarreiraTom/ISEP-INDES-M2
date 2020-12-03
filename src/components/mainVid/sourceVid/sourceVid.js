@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './../mainVid.css';
 
-export default function sourceVid(props) {
+export default function SourceVid(props) {
 
     switch (props.source.type) {
         case "webcam":
@@ -38,6 +38,7 @@ export default function sourceVid(props) {
         case "ipCam":
             return(
                 <>
+                    {/* <object id={"ip-cam-"+props.source.name} data={"http://"+props.source.desc}></object> */}
                     <img id={"ip-cam-"+props.source.name} border="0" src={"http://"+props.source.desc}></img>
                 </>
             );
@@ -52,11 +53,10 @@ export default function sourceVid(props) {
             break;
 
         case "youtube":
-
-            let videosrc = props.source.desc.split("v=")[1]
+            let videosrc = props.source.desc.match("v=")!=null ? props.source.desc.split("v=")[1] : props.source.desc
             return(
                 <>
-                    <iframe src={"https://www.youtube.com/embed/"+videosrc} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src={"https://www.youtube.com/embed/"+videosrc+"?autoplay=1"} frameborder="0" allow="autoplay; clipboard-write; encrypted-media; gyroscope;"></iframe>
                 </>
             );
             break;
