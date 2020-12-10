@@ -1,9 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import MainVid from '../components/mainVid/mainVid'
 import MiniatureVids from '../components/miniatureVid/miniatureVid'
 
 export default function Page(props) {
+
+  const [webcamList, setWebcamList] = useState([]);
+  const [ipCamList, setIpCamList] = useState([]);
+  const [youtubeList, setYoutubeList] = useState([]);
+  const [twitchList, setTwitchList] = useState([]);
+  const [localVidsList, setLocalVidsList] = useState([]);
+
+  const handleDevices = useCallback(
+    mediaDevices =>
+      setWebcamList(mediaDevices.filter(({ kind }) => kind === "videoinput")),
+    [setWebcamList]
+  );
+ 
+  useEffect(
+    () => {
+      navigator.mediaDevices.enumerateDevices().then(handleDevices);
+    },
+    [handleDevices]
+  );
 
   const [sources, setSources] = useState([{
       id: "1",
@@ -21,11 +40,11 @@ export default function Page(props) {
       desc: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
       type: "youtube"
   },{
-    id:"4",
-    name:"LocalCamera",
-    desc:"VYRMPfKvZ2ogcK7tcVBgsbgwwGnastO3xo46",
-    type:"webcam"
-  }]);
+    id: "4",
+    name: "webcam",
+    desc: "",
+    type: "webcam"
+}]);
 
   const [mainSource, setMainSource] = useState({
       type: "none"
