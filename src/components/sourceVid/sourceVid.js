@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Webcam from "react-webcam";
 
-import './../miniatureVid.css';
-
 export default function SourceVid(props) {
 
     const webcamRef = React.useRef(null);
 
     switch (props.source.type) {
         case "webcam":
+            const videoConstraints = {
+                //environment || user
+                facingMode: "environment"
+              };
             return(
                 <>
-                    {/* <!-- Camera sensor --> */}
-                    <canvas id={"camera-sensor-"+props.source.name}></canvas>
-                    {/* <!-- Camera view --> */}
-                    <Webcam audio={false} ref={webcamRef} />
+                    <Webcam audio={false} ref={webcamRef} videoConstraints={videoConstraints} />
                 </>
             );
             break;
@@ -78,11 +77,16 @@ export default function SourceVid(props) {
             break;
     
         default:
-            return (
-                <>
-                    <i className="fa fa-plus"></i>
-                </>
-                );
+            return(
+                props.parentComp=="miniature" ? (
+                    <>
+                        <i className="fa fa-plus"></i>
+                    </>) : (
+                        <>
+                            <h2 className="noDisplay">No display selected</h2>
+                        </>
+                    )
+            )
             break;
     }
     

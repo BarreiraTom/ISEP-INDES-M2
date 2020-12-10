@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 import './mainVid.css';
-import SrcVideo from './sourceVid/sourceVid';
+import SrcVideo from '../sourceVid/sourceVid';
 
 export default function MainVid(props) {
 
     const [mainSource, setMainSource] = useState(props.mainSource);
+    const component = "mainVid";
 
     useEffect(()=>{
         setMainSource(props.mainSource);
@@ -15,7 +16,7 @@ export default function MainVid(props) {
         <>
             {mainSource.name ? (<h3 className="mainDesc">{mainSource.name}</h3>) : (<h3 className="mainDesc">{mainSource.desc}</h3>) }
             <div className="mainVideo">
-                <SrcVideo source={mainSource}/>
+                <SrcVideo source={mainSource} parentComp={component}/>
             </div>
         </>
     );
