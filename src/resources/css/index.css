@@ -21,3 +21,17 @@ h3{
   margin: 0;
   text-align: center;
 }
+
+.main-area{
+  display: flex;
+  height: -webkit-fill-available;
+}
+
+.left-area{
+  flex: 5;
+}
+
+.right-area{
+  flex: 2;
+  margin-left: 2%;
+}

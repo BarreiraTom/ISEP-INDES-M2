@@ -1,0 +1,23 @@
+.playlist-area{
+    background-color: #CCC4;
+    border: 1px #CCC solid;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    min-height: 70%;
+    margin-top: 1%;
+}
+
+.accordion .card{
+    background: rgb(110 221 255);
+}
+
+.accordion .card .collapse,
+.accordion .card .collapsing{
+    background: rgb(19, 202, 196);
+}
+
+.accordion .card .card-body{
+    padding: 0.5rem 1.25rem;
+}

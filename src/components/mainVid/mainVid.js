@@ -14,7 +14,7 @@ export default function MainVid(props) {
 
     return (
         <>
-            {mainSource.name ? (<h3 className="mainDesc">{mainSource.name}</h3>) : (<h3 className="mainDesc">{mainSource.desc}</h3>) }
+            {mainSource.name ? (<h3 className="mainDesc">{mainSource.name}</h3>) : (<h3 className="mainDesc">No Display selected</h3>) }
             <div className="mainVideo">
                 <SrcVideo source={mainSource} parentComp={component}/>
             </div>
