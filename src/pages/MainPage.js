@@ -63,7 +63,7 @@ export default function Page(props) {
             <div class="main-area">
                 <div class="left-area">
                     <MainVid mainSource={mainSource} />
-                    <MiniatureVids sources={sources} changeLiveVid={changeLiveVid} mainSource={mainSource} />
+                    <MiniatureVids sources={sources} changeLiveVid={changeLiveVid} mainSource={mainSource} MiniDisabled={false}/>
                 </div>
                 <div class="right-area">
                     <Playslists></Playslists>

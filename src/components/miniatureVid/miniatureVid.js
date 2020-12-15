@@ -14,7 +14,14 @@ export default function MiniatureVid(props) {
 
     return (
         <div id="miniVids">
-        <div id="miniSources">
+            {props.MiniDisabled ? (
+                <div class="MiniDisabled">
+                    Miniatures Disabled
+                </div>
+            ) : (
+                <></>
+            )}
+            <div id="miniSources">
                 {sources.map((src, key) => {
                     return (
                         <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this, src)}>

@@ -76,3 +76,17 @@
     transition: .5s;
     box-shadow: 0 0 1rem .5rem #0C0;
 }
+
+.MiniDisabled{
+    background-color: #CCC4;
+    color: #F00A;
+    text-align: center;
+    font-size: 40pt;
+    font-weight: 600;
+    font-family: Poppins;
+    box-shadow: 0 0 1rem 1rem #CCC4;
+    cursor: not-allowed;
+    position: absolute;
+    top: 0;bottom: 0;right: 0;left: 0;
+    z-index: 10;
+}
