@@ -9,7 +9,11 @@ export default function MainVid(props) {
     const component = "mainVid";
 
     useEffect(()=>{
-        setMainSource(props.mainSource);
+        if (props.miniatureDisabled){
+            setMainSource({type: "sleep"});
+        }else{
+            setMainSource(props.mainSource);
+        }
     });
 
     return (

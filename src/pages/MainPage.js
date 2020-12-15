@@ -4,6 +4,7 @@ import MainVid from "../components/mainVid/mainVid";
 import MiniatureVids from "../components/miniatureVid/miniatureVid";
 import Playslists from "../components/playlistsComponent/paylists";
 
+import ActionButton from "../components/actionButtons/actionButton";
 import '../resources/css/index.css';
 
 export default function Page(props) {
@@ -12,6 +13,8 @@ export default function Page(props) {
     const [youtubeList, setYoutubeList] = useState([]);
     const [twitchList, setTwitchList] = useState([]);
     const [localVidsList, setLocalVidsList] = useState([]);
+    
+    const [miniatureDisabled, setMiniatureDisabled] = useState(false);
 
     const handleDevices = useCallback(
         (mediaDevices) => setWebcamList(mediaDevices.filter(({ kind }) => kind === "videoinput")),
@@ -62,11 +65,12 @@ export default function Page(props) {
         <>
             <div class="main-area">
                 <div class="left-area">
-                    <MainVid mainSource={mainSource} />
-                    <MiniatureVids sources={sources} changeLiveVid={changeLiveVid} mainSource={mainSource} MiniDisabled={false}/>
+                    <MainVid mainSource={mainSource} miniatureDisabled={miniatureDisabled}/>
+                    <MiniatureVids sources={sources} changeLiveVid={changeLiveVid} mainSource={mainSource} MiniDisabled={miniatureDisabled}/>
                 </div>
                 <div class="right-area">
                     <Playslists></Playslists>
+                    <ActionButton setMiniatureDisabled={setMiniatureDisabled} miniatureDisabled={miniatureDisabled}></ActionButton>
                 </div>
             </div>
         </>

@@ -4,6 +4,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import "./resources/css/App.css";
 
 import MainPage from "./pages/MainPage";
+import MainPageLive from "./pages/MainPageLive";
 
 export default withRouter(function App() {
 
@@ -15,6 +16,13 @@ export default withRouter(function App() {
         exact
         render={(props) => (
           <MainPage {...props} />
+        )}
+      />
+      <Route
+        path="/live"
+        exact
+        render={(props) => (
+          <MainPageLive {...props} />
         )}
       />
     </>

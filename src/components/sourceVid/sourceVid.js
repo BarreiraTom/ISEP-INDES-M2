@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Webcam from "react-webcam";
+import listReactFiles from 'list-react-files'
+
 
 export default function SourceVid(props) {
 
@@ -30,6 +32,19 @@ export default function SourceVid(props) {
             return(
                 <>
                     <video id={"local-"+props.source.name} src={props.source.desc} autoplay muted loop></video>
+                </>
+            );
+            break;
+
+        case "sleep":
+            // fs detetar ficheiros no resource/videos
+            // acaba um video e começa outro
+            // acaba a lista, recomeça
+            //listReactFiles("videos/").then(files => console.log(files))
+
+            return(
+                <>  
+                    <video id={"local-"+props.source.name} src="videos/video1.mp4" loop autoPlay></video>   q
                 </>
             );
             break;
