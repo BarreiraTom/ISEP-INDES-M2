@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Webcam from "react-webcam";
 import listReactFiles from 'list-react-files'
 
@@ -18,7 +18,6 @@ export default function SourceVid(props) {
                     <Webcam audio={false} ref={webcamRef} videoConstraints={videoConstraints} />
                 </>
             );
-            break;
 
         case "ipCam":
             return(
@@ -26,11 +25,10 @@ export default function SourceVid(props) {
                     <img id={"ip-cam-"+props.source.name} border="0" src={"http://"+props.source.desc}></img>
                 </>
             );
-            break;
     
         case "local":
             return(
-                props.parentComp=="miniature" ? (
+                props.parentComp==="miniature" ? (
                     <>
                         <video id={"local-"+props.source.name} src={props.source.desc} controls autoPlay muted loop></video>
                     </>
@@ -40,7 +38,6 @@ export default function SourceVid(props) {
                     </>
                 )
             );
-            break;
 
         case "sleep":
             // fs detetar ficheiros no resource/videos
@@ -55,7 +52,6 @@ export default function SourceVid(props) {
                     </video>
                 </>
             );
-            break;
 
         case "youtube":
             let videosrc = props.source.desc.match("v=")!=null ? props.source.desc.split("v=")[1] : props.source.desc
@@ -85,29 +81,27 @@ export default function SourceVid(props) {
 
             return(
                 <>
-                    <iframe src={"https://www.youtube.com/embed/"+videosrc+"?controls=0&autoplay=1&mute=1"} frameborder="0" allow="autoplay; clipboard-write; encrypted-media; gyroscope;" volume="0"></iframe>~
+                    <iframe src={"https://www.youtube.com/embed/"+videosrc+"?controls=0&autoplay=1&mute=1"} frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; gyroscope;" volume="0"></iframe>~
                     {/* <div id={"miniYT-"+props.source.name} onLoad={onYouTubeIframeAPIReady.bind(this, "YT")}></div> */}
                 </>
             );
-            break;
 
         case "twitch":
             return(
-                props.parentComp=="miniature" ? (
+                props.parentComp==="miniature" ? (
                     <>
-                        <iframe id={"twitch-"+props.source.name} src={"https://player.twitch.tv/?channel="+props.source.desc+"&parent=localhost"+"&muted=true&autoplay=true&controls=0"} frameborder="0" allowfullscreen="false" scrolling="no"></iframe>
+                        <iframe id={"twitch-"+props.source.name} src={"https://player.twitch.tv/?channel="+props.source.desc+"&parent=localhost"+"&muted=true&autoplay=true&controls=0"} frameBorder="0" allowFullScreen={false} scrolling="no"></iframe>
                     </>
                 ) : (
                     <>
-                        <iframe id={"twitch-"+props.source.name} src={"https://player.twitch.tv/?channel="+props.source.desc+"&parent=localhost"+"&autoplay=true&controls=1"} frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
+                        <iframe id={"twitch-"+props.source.name} src={"https://player.twitch.tv/?channel="+props.source.desc+"&parent=localhost"+"&autoplay=true&controls=1"} frameBorder="0" allowFullScreen={true} scrolling="no"></iframe>
                     </>
                 )
             );
-            break;
     
         default:
             return(
-                props.parentComp=="miniature" ? (
+                props.parentComp==="miniature" ? (
                     <>
                         <i className="fa fa-plus"></i>
                     </>) : (
@@ -116,7 +110,6 @@ export default function SourceVid(props) {
                         </>
                     )
             )
-            break;
     }
     
 }

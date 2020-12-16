@@ -63,12 +63,12 @@ export default function Page(props) {
 
     return (
         <>
-            <div class="main-area">
-                <div class="left-area">
+            <div className="main-area">
+                <div className="left-area">
                     <MainVid mainSource={mainSource} miniatureDisabled={miniatureDisabled}/>
                     <MiniatureVids sources={sources} changeLiveVid={changeLiveVid} mainSource={mainSource} MiniDisabled={miniatureDisabled}/>
                 </div>
-                <div class="right-area">
+                <div className="right-area">
                     <Playslists></Playslists>
                     <ActionButton setMiniatureDisabled={setMiniatureDisabled} miniatureDisabled={miniatureDisabled}></ActionButton>
                 </div>

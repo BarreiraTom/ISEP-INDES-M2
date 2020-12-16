@@ -9,7 +9,7 @@ export default function Playslists(props) {
     return (
         <>
             <h3 className="mainDesc">Playlists</h3>
-            <div class="playlist-area">
+            <div className="playlist-area">
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">

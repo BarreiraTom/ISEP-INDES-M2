@@ -15,7 +15,7 @@ export default function MiniatureVid(props) {
     return (
         <div id="miniVids">
             {props.MiniDisabled ? (
-                <div class="MiniDisabled">
+                <div className="MiniDisabled">
                     Miniatures Disabled
                 </div>
             ) : (
