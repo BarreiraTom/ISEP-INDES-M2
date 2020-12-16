@@ -30,9 +30,15 @@ export default function SourceVid(props) {
     
         case "local":
             return(
-                <>
-                    <video id={"local-"+props.source.name} src={props.source.desc} autoplay muted loop></video>
-                </>
+                props.parentComp=="miniature" ? (
+                    <>
+                        <video id={"local-"+props.source.name} src={props.source.desc} controls autoPlay muted loop></video>
+                    </>
+                ) : (
+                    <>
+                        <video id={"local-"+props.source.name} src={props.source.desc} controls autoPlay loop></video>
+                    </>
+                )
             );
             break;
 
@@ -44,7 +50,9 @@ export default function SourceVid(props) {
 
             return(
                 <>  
-                    <video id={"local-"+props.source.name} src="videos/video1.mp4" loop autoPlay></video>   q
+                    <video id="local-sleep" controls loop autoPlay>
+                        <source src="videos/video1.mp4" type="video/mp4"/>
+                    </video>
                 </>
             );
             break;
@@ -85,9 +93,15 @@ export default function SourceVid(props) {
 
         case "twitch":
             return(
-                <>
-                    <iframe id={"twitch-"+props.source.name} src={"https://player.twitch.tv/?channel="+props.source.desc+"&parent=localhost"+"&muted=true&autoplay=true&controls=0"} frameborder="0" allowfullscreen="false" scrolling="no"></iframe>
-                </>
+                props.parentComp=="miniature" ? (
+                    <>
+                        <iframe id={"twitch-"+props.source.name} src={"https://player.twitch.tv/?channel="+props.source.desc+"&parent=localhost"+"&muted=true&autoplay=true&controls=0"} frameborder="0" allowfullscreen="false" scrolling="no"></iframe>
+                    </>
+                ) : (
+                    <>
+                        <iframe id={"twitch-"+props.source.name} src={"https://player.twitch.tv/?channel="+props.source.desc+"&parent=localhost"+"&autoplay=true&controls=1"} frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
+                    </>
+                )
             );
             break;
     

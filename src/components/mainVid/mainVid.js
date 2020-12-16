@@ -14,7 +14,7 @@ export default function MainVid(props) {
         }else{
             setMainSource(props.mainSource);
         }
-    });
+    },[props.miniatureDisabled]);
 
     return (
         <>
