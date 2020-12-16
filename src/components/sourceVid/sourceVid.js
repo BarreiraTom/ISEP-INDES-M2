@@ -5,7 +5,7 @@ import Webcam from "react-webcam";
 export default function SourceVid(props) {
 
     const webcamRef = React.useRef(null);
-    const [videoNumber, setVideoNumber] = useState(1);
+    const [videoNumber, setVideoNumber] = React.useState(1);
     const setCount = () => {
         setVideoNumber(videoNumber + 1);
     };
@@ -54,8 +54,8 @@ export default function SourceVid(props) {
             var vid = "videos/video"+videoNumber+".mp4";
             return(
                 <>  
-                    <video id="local-sleep" controls loop autoPlay onWaiting={() => {setCount()}} onError={() => {resetCount()}}>
-                        <source src={vid} type="video/mp4"/>
+                    <video id="local-sleep"  src={vid} type="video/mp4" controls loop autoPlay onWaiting={() => {setCount()}} onError={() => {resetCount()}}>
+        
                     </video>
                 </>
             );
