@@ -54,9 +54,7 @@ export default function SourceVid(props) {
             var vid = "videos/video"+videoNumber+".mp4";
             return(
                 <>  
-                    <video id="local-sleep"  src={vid} type="video/mp4" controls loop autoPlay onWaiting={() => {setCount()}} onError={() => {resetCount()}}>
-        
-                    </video>
+                    <video id="local-sleep" src={vid} type="video/mp4" controls autoPlay onEnded={() => {setCount()}} onError={() => {resetCount()}}></video>
                 </>
             );
 
