@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useCallback } from "react";
 
 import MainVid from "../components/mainVid/mainVid";
@@ -5,7 +6,7 @@ import MiniatureVids from "../components/miniatureVid/miniatureVid";
 import Playslists from "../components/playlistsComponent/paylists";
 
 import ActionButton from "../components/actionButtons/actionButton";
-import '../resources/css/index.css';
+import "../resources/css/index.css";
 
 export default function Page(props) {
     const [webcamList, setWebcamList] = useState([]);
@@ -13,7 +14,7 @@ export default function Page(props) {
     const [youtubeList, setYoutubeList] = useState([]);
     const [twitchList, setTwitchList] = useState([]);
     const [localVidsList, setLocalVidsList] = useState([]);
-    
+
     const [miniatureDisabled, setMiniatureDisabled] = useState(false);
 
     const handleDevices = useCallback(
@@ -61,16 +62,32 @@ export default function Page(props) {
         setMainSource(src);
     };
 
+    const changeMinVid = (pos, src, el) => {
+        el.preventDefault();
+
+        const arr = sources;
+        arr[pos] = { ...arr[pos], name: src.name, desc: src.name };
+        setSources(arr);
+    };
+
     return (
         <>
             <div className="main-area">
                 <div className="left-area">
-                    <MainVid mainSource={mainSource} miniatureDisabled={miniatureDisabled}/>
-                    <MiniatureVids sources={sources} changeLiveVid={changeLiveVid} mainSource={mainSource} MiniDisabled={miniatureDisabled}/>
+                    <MainVid mainSource={mainSource} miniatureDisabled={miniatureDisabled} />
+                    <MiniatureVids
+                        sources={sources}
+                        changeLiveVid={changeLiveVid}
+                        mainSource={mainSource}
+                        MiniDisabled={miniatureDisabled}
+                    />
                 </div>
                 <div className="right-area">
-                    <Playslists></Playslists>
-                    <ActionButton setMiniatureDisabled={setMiniatureDisabled} miniatureDisabled={miniatureDisabled}></ActionButton>
+                    <Playslists changeSources={changeMinVid}></Playslists>
+                    <ActionButton
+                        setMiniatureDisabled={setMiniatureDisabled}
+                        miniatureDisabled={miniatureDisabled}
+                    ></ActionButton>
                 </div>
             </div>
         </>

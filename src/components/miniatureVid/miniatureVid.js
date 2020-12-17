@@ -7,20 +7,13 @@ export default function MiniatureVid(props) {
     const [sources, setSources] = useState([...props.sources, { type: "none" }]);
     const component = "miniature";
 
-    // useEffect(()=>{
-    //     let tempSrcs = props.sources.map((src)=>{if (props.mainSource!=src){return src}});
-    //     setSources([props.mainSource,...tempSrcs, {type:"none"}]);
-    // })
+    useEffect(() => {
+        setSources([...props.sources, { type: "none" }]);
+    }, [props.sources]);
 
     return (
         <div id="miniVids">
-            {props.MiniDisabled ? (
-                <div className="MiniDisabled">
-                    Miniatures Disabled
-                </div>
-            ) : (
-                <></>
-            )}
+            {props.MiniDisabled ? <div className="MiniDisabled">Miniatures Disabled</div> : <></>}
             <div id="miniSources">
                 {sources.map((src, key) => {
                     return (
