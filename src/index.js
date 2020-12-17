@@ -3,15 +3,21 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import './resources/css/index.css';
 import App from './App';
+import ViewManager from './ViewManager'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import * as serviceWorker from './serviceWorker';
 
+// ReactDOM.render(
+//   <BrowserRouter>
+//     <App />
+//   </BrowserRouter>,
+//   document.getElementById('root')
+// );
+
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <ViewManager/>,
   document.getElementById('root')
 );
 

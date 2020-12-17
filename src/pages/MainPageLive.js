@@ -8,7 +8,7 @@ export default function Page(props) {
     
     return (
         <>  
-            <div ref={setReflect}> <Mirror reflect={reflect} className='mainVideo'/></div>
+            <div ref={setReflect}> <Mirror reflect={reflect} className='mirror-frame'/></div>
            
         </>
     );
