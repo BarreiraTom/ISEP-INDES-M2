@@ -64,9 +64,8 @@ export default function Page(props) {
 
     const changeMinVid = (pos, src, el) => {
         el.preventDefault();
-
-        const arr = sources;
-        arr[pos] = { ...arr[pos], name: src.name, desc: src.name };
+        const arr = [...sources];
+        arr[pos] = { ...arr[pos], name: src.name, desc: src.desc };
         setSources(arr);
     };
 
@@ -83,7 +82,7 @@ export default function Page(props) {
                     />
                 </div>
                 <div className="right-area">
-                    <Playslists changeSources={changeMinVid}></Playslists>
+                    <Playslists changeMinVid={changeMinVid}></Playslists>
                     <ActionButton
                         setMiniatureDisabled={setMiniatureDisabled}
                         miniatureDisabled={miniatureDisabled}

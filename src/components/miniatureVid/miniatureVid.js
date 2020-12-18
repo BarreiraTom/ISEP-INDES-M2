@@ -4,11 +4,11 @@ import "./miniatureVid.css";
 import ScrVideo from "../sourceVid/sourceVid";
 
 export default function MiniatureVid(props) {
-    const [sources, setSources] = useState([...props.sources, { type: "none" }]);
+    const [sources, setSources] = useState(props.sources);
     const component = "miniature";
 
     useEffect(() => {
-        setSources([...props.sources, { type: "none" }]);
+        setSources(props.sources);
     }, [props.sources]);
 
     return (

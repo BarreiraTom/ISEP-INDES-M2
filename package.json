@@ -16,8 +16,6 @@
     "bootstrap": "^4.5.3",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
-    "electron": "^11.0.3",
-    "electron-builder": "^22.9.1",
     "electron-is-dev": "^1.2.0",
     "fs": "0.0.1-security",
     "list-react-files": "^0.2.0",
@@ -58,5 +56,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^11.1.0",
+    "electron-builder": "^22.9.1"
   }
 }

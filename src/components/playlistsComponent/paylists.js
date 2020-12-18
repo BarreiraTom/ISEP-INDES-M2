@@ -17,13 +17,18 @@ export default function Playslists(props) {
         }
     ]);
 
-    const changeSources = props.changeSources;
-/* 
-    const changeTwitchMinSource = (e) => {
-        console.log(e.target.id);
-        sources[0].name = e.target.id;
-        sources[0].desc = e.target.id;
-    } */
+    const [youtubeSources, setYoutubeSources] = useState([
+        {
+            name: "esl csgo",
+            desc: "https://www.youtube.com/watch?v=sn6EjlZJzIQ"
+        },
+        {
+            name: "lindinho",
+            desc: "https://www.youtube.com/watch?v=VG4YEDBYruo"
+        }
+    ]);
+
+    const { changeMinVid } = props;
 
     return (
         <>
@@ -34,9 +39,13 @@ export default function Playslists(props) {
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                             Youtube
                         </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="0" as={Button}>
-                            <Card.Body>Hello! I'm the body</Card.Body>
-                        </Accordion.Collapse>
+                        {youtubeSources.map((source, key) => {
+                            return (
+                                <Accordion.Collapse eventKey="0" name={source.name}>
+                                    <Card.Body onClick={changeMinVid.bind(this, 2, source)}>{source.name}</Card.Body>
+                                </Accordion.Collapse>
+                            );
+                        })}
                     </Card>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
@@ -45,7 +54,7 @@ export default function Playslists(props) {
                         {twitchSources.map((source, key) => {
                             return (
                                 <Accordion.Collapse eventKey="1" name={source.name}>
-                                    <Card.Body onClick={changeSources.bind(this, 0, source )} id={source.name}>{source.name}</Card.Body>
+                                    <Card.Body onClick={changeMinVid.bind(this, 0, source)}>{source.name}</Card.Body>
                                 </Accordion.Collapse>
                             );
                         })}
