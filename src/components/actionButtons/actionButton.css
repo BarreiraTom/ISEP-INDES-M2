@@ -1,0 +1,16 @@
+.actionBtns{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.playListBtn{
+    border: honeydew 1px solid;
+    font-family: Poppins;
+    font-weight: 600;
+    width: 10rem;
+    min-height: 2.5rem;
+    margin: 1rem auto;
+    border-radius: 0.2rem;
+}

@@ -10,9 +10,8 @@ export default function ActionButton(props) {
     };
 
     return (
-        <>
-            <button onClick={setMiniDisabled.bind(this)}>Run Playlists</button>
-            
-        </>
+        <div className="actionBtns">
+            <button className="playListBtn" onClick={setMiniDisabled.bind(this)}>{props.miniatureDisabled ? ("Deactivate Playlist") : ("Activate Playlist")}</button>
+        </div>
     );
 }
