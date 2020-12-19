@@ -39,6 +39,11 @@ export default function Playslists(props) {
     const smartUpdateWebCam = (src, key, el) => {
         changeMinVid(3, src, el)
         toggleMiniature("webcam",key,src.inUse)
+        //toggleMiniature.bind("webcam",key,src.inUse)
+    }
+
+    const youtubeUpdate = (type, key, inUse) =>{
+        toggleMiniature(type,key,inUse)
     }
 
     return (
@@ -70,7 +75,8 @@ export default function Playslists(props) {
                         {props.ipCamList.map((source, key) => {
                             return (
                                 <Accordion.Collapse eventKey="1" name={source.name}>
-                                    <Card.Body onClick={changeMinVid.bind(this, 1, source)}>{source.name}</Card.Body>
+                                    {/* <Card.Body onClick={changeMinVid.bind(this, 1, source)}>{source.name}</Card.Body> */}
+                                    <Card.Body onClick={toggleMiniature.bind(this, "ipCam",key,source.inUse)}>{source.name}</Card.Body>
                                 </Accordion.Collapse>
                             );
                         })}
@@ -82,7 +88,8 @@ export default function Playslists(props) {
                         {props.youtubeList.map((source, key) => {
                             return (
                                 <Accordion.Collapse eventKey="2" name={source.name}>
-                                    <Card.Body onClick={changeMinVid.bind(this, 2, source)}>{source.name}</Card.Body>
+                                    {/* <Card.Body onClick={changeMinVid.bind(this, 2, source)}>{source.name}</Card.Body> */}
+                                    <Card.Body onClick={youtubeUpdate.bind(this, "youtube",key,source.inUse)}>{source.name}</Card.Body>
                                 </Accordion.Collapse>
                             );
                         })}
@@ -94,7 +101,8 @@ export default function Playslists(props) {
                         {props.twitchList.map((source, key) => {
                             return (
                                 <Accordion.Collapse eventKey="3" name={source.name}>
-                                    <Card.Body onClick={changeMinVid.bind(this, 0, source)}>{source.name}</Card.Body>
+                                    {/* <Card.Body onClick={changeMinVid.bind(this, 0, source)}>{source.name}</Card.Body> */}
+                                    <Card.Body onClick={toggleMiniature.bind(this, "twitch",key,source.inUse)}>{source.name}</Card.Body>
                                 </Accordion.Collapse>
                             );
                         })}
@@ -106,7 +114,8 @@ export default function Playslists(props) {
                         {props.localVidsList.map((source, key) => {
                             return (
                                 <Accordion.Collapse eventKey="4" name={source.name}>
-                                    <Card.Body onClick={changeMinVid.bind(this, 4, source)}>{source.name}</Card.Body>
+                                    {/* <Card.Body onClick={changeMinVid.bind(this, 4, source)}>{source.name}</Card.Body> */}
+                                    <Card.Body onClick={toggleMiniature.bind(this, "local",key,source.inUse)}>{source.name}</Card.Body>
                                 </Accordion.Collapse>
                             );
                         })}

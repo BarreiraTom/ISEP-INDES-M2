@@ -23,7 +23,6 @@ export default function MainVid(props) {
     //Auto update to change the Live video if the selected source gets changed (LEGACY SOURCES)
     useEffect(() => {
         const changedSrc= props.sources.filter(({ type }) => type === mainSource.type);
-        console.log(changedSrc);
         if(changedSrc.length>0){setMainSource(...changedSrc)}
     }, [props.sources])
 

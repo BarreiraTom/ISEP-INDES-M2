@@ -18,17 +18,19 @@ export default function MiniatureVid(props) {
     // const [youtubeList, setYoutubeList] = useState(props.youtubeList);
     // const [twitchList, setTwitchList] = useState(props.twitchList);
     // const [localVidsList, setLocalVidsList] = useState(props.localVidsList);
-    //
-    // useEffect(() => {
-    //     setWebcamList(props.webcamList);
-    // }, [props.webcamList]);
+    
+    //THIS DOES NOT SEEM TO WORK... DON'T KNOW WHY...
+    useEffect(() => {
+        // setWebcamList(props.webcamList);
+        console.log("Updated Sources");
+    }, [props.webcamList, props.ipCamList, props.youtubeList, props.twitchList, props.localVidsList]);
 
 
     return (
         <div id="miniVids">
             {props.MiniDisabled ? <div className="MiniDisabled">Miniatures Disabled</div> : <></>}
             <div id="miniSources">
-                {sources.map((src, key) => {
+                {/* {sources.map((src, key) => {
                     return (
                         <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this, src)}>
                             <div className={"miniatureVid" + (props.mainSource === src ? " active" : "")}>
@@ -39,36 +41,64 @@ export default function MiniatureVid(props) {
                         </div>
                     );
                 })}
-                <br/>
+                <br/> */}
 
-                {/* TESTING FOR MY IDEA OF THE "inUse" dependent show - ABRI UM BRANCH PARA ISTO  */} {/* branch: newSources */}
-                {/* Aqui está um exemplo */}
+                {/* TESTING FOR MY IDEA OF THE "inUse" dependent show */}
                 {props.webcamList.map((src, key) => {
-                    if (src.inUse){
-                        return (
-                            <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this, src)}>
-                                <div className={"miniatureVid" + (props.mainSource === src ? " active" : "")}>
-                                    <div className="screenBlock"></div>
-                                    <ScrVideo source={src} parentComp={component} />
-                                </div>
-                                <h3 className="miniatureDesc">{src.name ? src.name : ""}</h3>
+                    return src.inUse ? (
+                        <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this, src)}>
+                            <div className={"miniatureVid" + (props.mainSource === src ? " active" : "")}>
+                                <div className="screenBlock"></div>
+                                <ScrVideo source={src} parentComp={component} />
                             </div>
-                        );
-                    } 
+                            <h3 className="miniatureDesc">{src.name ? src.name : ""}</h3>
+                        </div>
+                    ) : (<></>);
                 })}
-                {/* {props.youtubeList.map((src, key) => {
-                    if (src.inUse){
-                        return (
-                            <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this, src)}>
-                                <div className={"miniatureVid" + (props.mainSource === src ? " active" : "")}>
-                                    <div className="screenBlock"></div>
-                                    <ScrVideo source={src} parentComp={component} />
-                                </div>
-                                <h3 className="miniatureDesc">{src.name ? src.name : ""}</h3>
+                {props.ipCamList.map((src, key) => {
+                    return src.inUse ? (
+                        <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this, src)}>
+                            <div className={"miniatureVid" + (props.mainSource === src ? " active" : "")}>
+                                <div className="screenBlock"></div>
+                                <ScrVideo source={src} parentComp={component} />
                             </div>
-                        );
-                    } 
-                })} */}
+                            <h3 className="miniatureDesc">{src.name ? src.name : ""}</h3>
+                        </div>
+                    ) : (<></>);
+                })}
+                {props.youtubeList.map((src, key) => {
+                    return src.inUse ? (
+                        <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this, src)}>
+                            <div className={"miniatureVid" + (props.mainSource === src ? " active" : "")}>
+                                <div className="screenBlock"></div>
+                                <ScrVideo source={src} parentComp={component} />
+                            </div>
+                            <h3 className="miniatureDesc">{src.name ? src.name : ""}</h3>
+                        </div>
+                    ) : (<></>);
+                })}
+                {props.twitchList.map((src, key) => {
+                    return src.inUse ? (
+                        <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this, src)}>
+                            <div className={"miniatureVid" + (props.mainSource === src ? " active" : "")}>
+                                <div className="screenBlock"></div>
+                                <ScrVideo source={src} parentComp={component} />
+                            </div>
+                            <h3 className="miniatureDesc">{src.name ? src.name : ""}</h3>
+                        </div>
+                    ) : (<></>);
+                })}
+                {props.localVidsList.map((src, key) => {
+                    return src.inUse ? (
+                        <div className="miniStream" key={key} onClick={props.changeLiveVid.bind(this, src)}>
+                            <div className={"miniatureVid" + (props.mainSource === src ? " active" : "")}>
+                                <div className="screenBlock"></div>
+                                <ScrVideo source={src} parentComp={component} />
+                            </div>
+                            <h3 className="miniatureDesc">{src.name ? src.name : ""}</h3>
+                        </div>
+                    ) : (<></>);
+                })}
             </div>
         </div>
     );

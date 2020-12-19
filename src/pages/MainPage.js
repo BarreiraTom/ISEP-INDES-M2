@@ -146,11 +146,43 @@ export default function Page(props) {
 
     EDIT: são 3h da manha... XD 
     Começou a funcionar do nada. Vou criar um branch (newSources) para continuar isto sem vos causar problemas
+
+    EDIT: 4AM LOG... :P
+     the toggle only seems to work when the webcams update... Updating the whole list... WIERD
     */
     const toggleMiniature = async (type, pos, state) => {
-        const temp = webcamList;
-        temp[pos].inUse = !state;
-        await setWebcamList(temp);
+        console.log("test IN")
+        switch (type) {
+            case "webcam":
+                let tempWebcam = webcamList;
+                tempWebcam[pos].inUse = !state;
+                await setWebcamList(tempWebcam);
+                break;
+            case "ipCam":
+                let tempIpCam = ipCamList;
+                tempIpCam[pos].inUse = !state;
+                await setIpCamList(tempIpCam)
+                break;
+            case "youtube":
+                let tempYt = youtubeList;
+                tempYt[pos].inUse = !state;
+                await setYoutubeList(tempYt)
+                break;
+            case "twitch":
+                let tempTwitch = twitchList;
+                tempTwitch[pos].inUse = !state;
+                await setTwitchList(tempTwitch)
+                break;
+            case "local":
+                let tempLocal = localVidsList;
+                tempLocal[pos].inUse = !state;
+                await setLocalVidsList(tempLocal)
+                break;
+                
+            default:
+                break;
+        }
+        console.log("test Out")
     }
 
     return (
