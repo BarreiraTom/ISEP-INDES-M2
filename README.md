@@ -42,7 +42,7 @@ It is able to access many pre-recorded video and live video stream and display t
     - npm run start
     ```
 
-- To build the application (for the Install) it's necessary to run one command in a terminal opened in the root of the project directory.
+- To build the application (for the Install and usage) it's necessary to run one command in a terminal opened in the root of the project directory.
 (Requirements: run "npm install" and "npm install --global yarn" before the next command)
     ```shell
     - npm run build
