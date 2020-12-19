@@ -14,12 +14,12 @@ export default function Page(props) {
     const [ipCamList, setIpCamList] = useState([
         {
             name: 'Phone1', 
-            desc: `192.168.1.2`,
+            desc: `192.168.1.2:8080/video`,
             type: "ipCam", 
             inUse: false
         },{
             name: 'Phone2', 
-            desc: `192.168.1.89`,
+            desc: `192.168.1.89:8080/video`,
             type: "ipCam", 
             inUse: false
         }
@@ -68,6 +68,8 @@ export default function Page(props) {
             inUse: false
         }
     ]);
+    //Creation of the StreamerLogo variable
+    const [liveLogo, setLiveLogo] = useState();
 
     //Pre-definition of the Main Source
     const [mainSource, setMainSource] = useState({ type: "none" });
@@ -174,6 +176,7 @@ export default function Page(props) {
     //     }
     // ]);
 
+    
     //This will change the Main Video from one of the Miniature videos
     const changeLiveVid = (src, el) => {
         el.preventDefault();
@@ -205,6 +208,7 @@ export default function Page(props) {
                         ].filter(({ inUse }) => inUse === true)} 
 
                         miniatureDisabled={miniatureDisabled} 
+                        liveLogo={liveLogo}
                         />
                     <MiniatureVids
 
@@ -218,8 +222,7 @@ export default function Page(props) {
                         mainSource={mainSource}
                         MiniDisabled={miniatureDisabled}
                     />
-                </div>
-                <div className="right-area">
+                </div><div className="right-area">
                     <Playslists 
                         //changeMinVid={changeMinVid} 
                         toggleMiniature={toggleMiniature}
@@ -238,6 +241,9 @@ export default function Page(props) {
                     <ActionButton
                         setMiniatureDisabled={setMiniatureDisabled}
                         miniatureDisabled={miniatureDisabled}
+
+                        liveLogo={liveLogo}
+                        setLiveLogo={setLiveLogo}
                     ></ActionButton>
                 </div>
             </div>

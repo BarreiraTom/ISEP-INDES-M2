@@ -22,8 +22,15 @@
 .accordion .card .card-body{
     padding: 0.5rem 1.25rem;
     cursor: pointer;
+    position: relative;
 }
 
 .plActBtn{
-    float: right;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: .5rem;
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
 }

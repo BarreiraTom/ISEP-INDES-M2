@@ -14,11 +14,12 @@
 }
 
 #miniSources{
-    position: relative;
+    position: absolute;
     height: min-content;
     width: max-content;
     margin: auto;
-    max-width: 100%;
+    top: 0;
+    bottom: 0;
 }
 
 .miniStream{

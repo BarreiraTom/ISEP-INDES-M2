@@ -17,8 +17,8 @@ let liveWindow;
 
 function createMainWindow(){
     mainWindow = new BrowserWindow({
-        width: 900, 
-        height: 680,
+        width: 1270, 
+        height: 800,
     });
     mainWindow.loadURL(
         isDev

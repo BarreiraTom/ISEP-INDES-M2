@@ -31,10 +31,14 @@ h3{
 }
 
 .left-area{
-  flex: 5;
+  width: 70%;
+  margin: 0;
+  padding: 0 1rem 0 0;
 }
 
 .right-area{
-  flex: 2;
-  margin-left: 2%;
+  width: 30%;
+  margin: 0;
+  padding: 0 0 0 1rem;
+  min-width: 162px;
 }

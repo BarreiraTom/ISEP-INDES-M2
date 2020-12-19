@@ -45,6 +45,7 @@ export default function MainVid(props) {
       )}
 
       <div onClick={() => setUsingPortal(true)} className="mainVideo">
+        <img src={props.liveLogo} className="liveLogo"/>
         <SrcVideo source={mainSource} parentComp={component} />
       </div>
     </>
