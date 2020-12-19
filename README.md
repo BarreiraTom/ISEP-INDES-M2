@@ -33,10 +33,17 @@ It is able to access many pre-recorded video and live video stream and display t
 
 .
 - To test the application it's necessary to run one of two commands in a terminal opened in the root of the project directory.
+(Requirements: run "npm install" before the next command)
     ```shell
     In the browser:
     - npm run react-start
 
     In the native app:
     - npm run start
+    ```
+
+- To build the application (for the Install) it's necessary to run one command in a terminal opened in the root of the project directory.
+(Requirements: run "npm install" and "npm install --global yarn" before the next command)
+    ```shell
+    - npm run build
     ```
