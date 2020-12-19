@@ -22,7 +22,8 @@ export default function SourceVid(props) {
         case "webcam":
             const videoConstraints = {
                 //environment || user
-                facingMode: "environment"
+                // facingMode: "environment"
+                deviceId: props.source.desc
             };
             return (
                 <>

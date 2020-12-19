@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import "./playlists.css";
 
 export default function Playslists(props) {
+    //Test Sources (not used)
     const [twitchSources, setTwitchSources] = useState([
         {
             name: "gaules",
@@ -16,19 +17,29 @@ export default function Playslists(props) {
             desc: "mibrtv"
         }
     ]);
-
     const [youtubeSources, setYoutubeSources] = useState([
         {
             name: "esl csgo",
             desc: "https://www.youtube.com/watch?v=sn6EjlZJzIQ"
-        },
-        {
+        },{
             name: "lindinho",
             desc: "https://www.youtube.com/watch?v=VG4YEDBYruo"
         }
     ]);
 
-    const { changeMinVid } = props;
+    const { changeMinVid, toggleMiniature } = props;
+
+    // const [webcamList, setWebcamList] = useState(props.webcamList);
+    // const [ipCamList, setIpCamList] = useState([]);
+    // const [youtubeList, setYoutubeList] = useState([]);
+    // const [twitchList, setTwitchList] = useState([]);
+    // const [localVidsList, setLocalVidsList] = useState([]);
+
+    //My Miniature update along with Miguel's Miniature update
+    const smartUpdateWebCam = (src, key, el) => {
+        changeMinVid(3, src, el)
+        toggleMiniature("webcam",key,src.inUse)
+    }
 
     return (
         <>
@@ -37,24 +48,65 @@ export default function Playslists(props) {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
-                            Youtube
+                            WebCams
                         </Accordion.Toggle>
-                        {youtubeSources.map((source, key) => {
+                        {props.webcamList.map((source, key) => {
                             return (
                                 <Accordion.Collapse eventKey="0" name={source.name}>
-                                    <Card.Body onClick={changeMinVid.bind(this, 2, source)}>{source.name}</Card.Body>
+                                    <Card.Body  onClick={smartUpdateWebCam.bind(this, source, key)}>
+                                        {source.name}
+                                        <div className="plActBtn">
+                                            <i className="fa fa-chevron-right"></i>
+                                        </div>
+                                    </Card.Body>
                                 </Accordion.Collapse>
                             );
                         })}
                     </Card>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                            Twitch
+                            IPcams
                         </Accordion.Toggle>
-                        {twitchSources.map((source, key) => {
+                        {props.ipCamList.map((source, key) => {
                             return (
                                 <Accordion.Collapse eventKey="1" name={source.name}>
+                                    <Card.Body onClick={changeMinVid.bind(this, 1, source)}>{source.name}</Card.Body>
+                                </Accordion.Collapse>
+                            );
+                        })}
+                    </Card>
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="2">
+                            Youtube
+                        </Accordion.Toggle>
+                        {props.youtubeList.map((source, key) => {
+                            return (
+                                <Accordion.Collapse eventKey="2" name={source.name}>
+                                    <Card.Body onClick={changeMinVid.bind(this, 2, source)}>{source.name}</Card.Body>
+                                </Accordion.Collapse>
+                            );
+                        })}
+                    </Card>
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="3">
+                            Twitch
+                        </Accordion.Toggle>
+                        {props.twitchList.map((source, key) => {
+                            return (
+                                <Accordion.Collapse eventKey="3" name={source.name}>
                                     <Card.Body onClick={changeMinVid.bind(this, 0, source)}>{source.name}</Card.Body>
+                                </Accordion.Collapse>
+                            );
+                        })}
+                    </Card>
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="4">
+                            Local
+                        </Accordion.Toggle>
+                        {props.localVidsList.map((source, key) => {
+                            return (
+                                <Accordion.Collapse eventKey="4" name={source.name}>
+                                    <Card.Body onClick={changeMinVid.bind(this, 4, source)}>{source.name}</Card.Body>
                                 </Accordion.Collapse>
                             );
                         })}
