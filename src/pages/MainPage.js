@@ -74,69 +74,8 @@ export default function Page(props) {
     //Preset for the Activate Playlist button
     const [miniatureDisabled, setMiniatureDisabled] = useState(false);
 
-    //Setup of Webcam Playlist
-    const handleDevices = async (mediaDevices) => {
-            const webcams = await mediaDevices.filter(({ kind }) => kind === "videoinput");
-            const tempArray = [];
-
-            await webcams.forEach(async wbcam => {
-                tempArray.push({name: `${wbcam.label}`.replace(" ","_"), desc: `${wbcam.deviceId}` ,type: "webcam", inUse:false})
-            });
-
-            setWebcamList([...tempArray])
-        }
-
-    useEffect(async () => {
-        const mediaDevs = await navigator.mediaDevices.enumerateDevices()
-        await handleDevices(mediaDevs)
-    }, []);
-
-    //LEGACY SOURCES
-    const [sources, setSources] = useState([
-        {
-            id: "1",
-            name: "rocketleague",
-            desc: "rocketleague",
-            type: "twitch"
-        },
-        {
-            id: "2",
-            name: "ipCam",
-            desc: "192.168.137.101:8080/video",
-            type: "ipCam"
-        },
-        {
-            id: "3",
-            name: "Youtube-vid1",
-            desc: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
-            type: "youtube"
-        },
-        {
-            id: "4",
-            name: "webcam",
-            desc: "",
-            type: "webcam"
-        },{
-            name: "video",
-            desc: "videos/video1.mp4",
-            type: "local"
-        }
-    ]);
-
-    //This will change the Main Video from one of the Miniature videos
-    const changeLiveVid = (src, el) => {
-        el.preventDefault();
-        setMainSource(src);
-    };
-
-    //This will change the Miniature videos on display
-    const changeMinVid = (pos, src, el) => {
-        el.preventDefault();
-        const arr = [...sources];
-        arr[pos] = { ...arr[pos], name: src.name, desc: src.desc };
-        setSources(arr);
-    };
-
+    
+    const [loading, setLoading] = useState(true);
 
     /*
     O que eu estava a tentar fazer aqui era, em vez de utilizar as sources e substituir uma posição 
@@ -150,48 +89,124 @@ export default function Page(props) {
     EDIT: 4AM LOG... :P
      the toggle only seems to work when the webcams update... Updating the whole list... WIERD
     */
-    const toggleMiniature = async (type, pos, state) => {
-        console.log("test IN")
-        switch (type) {
-            case "webcam":
-                let tempWebcam = webcamList;
-                tempWebcam[pos].inUse = !state;
-                await setWebcamList(tempWebcam);
-                break;
-            case "ipCam":
-                let tempIpCam = ipCamList;
-                tempIpCam[pos].inUse = !state;
-                await setIpCamList(tempIpCam)
-                break;
-            case "youtube":
-                let tempYt = youtubeList;
-                tempYt[pos].inUse = !state;
-                await setYoutubeList(tempYt)
-                break;
-            case "twitch":
-                let tempTwitch = twitchList;
-                tempTwitch[pos].inUse = !state;
-                await setTwitchList(tempTwitch)
-                break;
-            case "local":
-                let tempLocal = localVidsList;
-                tempLocal[pos].inUse = !state;
-                await setLocalVidsList(tempLocal)
-                break;
-                
-            default:
-                break;
-        }
-        console.log("test Out")
+   const toggleMiniature = async (type, pos, state) => {
+    await setLoading(true);
+
+    switch (type) {
+        case "webcam":
+            let tempWebcam = await webcamList;
+            tempWebcam[pos].inUse = !state;
+            await setWebcamList(tempWebcam);
+            break;
+        case "ipCam":
+            let tempIpCam = await ipCamList;
+            tempIpCam[pos].inUse = !state;
+            await setIpCamList(tempIpCam)
+            break;
+        case "youtube":
+            let tempYt = await youtubeList;
+            tempYt[pos].inUse = !state;
+            await setYoutubeList(tempYt)
+            break;
+        case "twitch":
+            let tempTwitch = await twitchList;
+            tempTwitch[pos].inUse = !state;
+            await setTwitchList(tempTwitch)
+            break;
+        case "local":
+            let tempLocal = await localVidsList;
+            tempLocal[pos].inUse = !state;
+            await setLocalVidsList(tempLocal)
+            break;
+            
+        default:
+            break;
     }
+    await setLoading(false);
+
+}
+    //Setup of Webcam Playlist
+    const handleDevices = async (mediaDevices) => {
+        const webcams = await mediaDevices.filter(({ kind }) => kind === "videoinput");
+        const tempArray = [];
+
+        await webcams.forEach(async wbcam => {
+            tempArray.push({name: `${wbcam.label}`.replace(" ","_"), desc: `${wbcam.deviceId}` ,type: "webcam", inUse:false})
+        });
+
+        setWebcamList([...tempArray])
+    }
+
+    useEffect(async () => {
+        const mediaDevs = await navigator.mediaDevices.enumerateDevices()
+        handleDevices(mediaDevs)
+    }, []);
+
+    // //LEGACY SOURCES
+    // const [sources, setSources] = useState([
+    //     {
+    //         id: "1",
+    //         name: "rocketleague",
+    //         desc: "rocketleague",
+    //         type: "twitch"
+    //     },
+    //     {
+    //         id: "2",
+    //         name: "ipCam",
+    //         desc: "192.168.137.101:8080/video",
+    //         type: "ipCam"
+    //     },
+    //     {
+    //         id: "3",
+    //         name: "Youtube-vid1",
+    //         desc: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
+    //         type: "youtube"
+    //     },
+    //     {
+    //         id: "4",
+    //         name: "webcam",
+    //         desc: "",
+    //         type: "webcam"
+    //     },{
+    //         name: "video",
+    //         desc: "videos/video1.mp4",
+    //         type: "local"
+    //     }
+    // ]);
+
+    //This will change the Main Video from one of the Miniature videos
+    const changeLiveVid = (src, el) => {
+        el.preventDefault();
+        setMainSource(src);
+    };
+
+    // //This will change the Miniature videos on display
+    // const changeMinVid = (pos, src, el) => {
+    //     el.preventDefault();
+    //     const arr = [...sources];
+    //     arr[pos] = { ...arr[pos], name: src.name, desc: src.desc };
+    //     setSources(arr);
+    // };
 
     return (
         <>
             <div className="main-area">
                 <div className="left-area">
-                    <MainVid mainSource={mainSource} sources={sources} miniatureDisabled={miniatureDisabled} />
+                    <MainVid
+                        mainSource={mainSource} 
+                        setMainSource={setMainSource}
+
+                        sources={[
+                            ...webcamList, 
+                            ...ipCamList, 
+                            ...youtubeList, 
+                            ...twitchList, 
+                            ...localVidsList
+                        ].filter(({ inUse }) => inUse === true)} 
+
+                        miniatureDisabled={miniatureDisabled} 
+                        />
                     <MiniatureVids
-                        sources={sources}
 
                         webcamList={webcamList}
                         ipCamList={ipCamList}
@@ -206,7 +221,7 @@ export default function Page(props) {
                 </div>
                 <div className="right-area">
                     <Playslists 
-                        changeMinVid={changeMinVid} 
+                        //changeMinVid={changeMinVid} 
                         toggleMiniature={toggleMiniature}
 
                         webcamList={webcamList}

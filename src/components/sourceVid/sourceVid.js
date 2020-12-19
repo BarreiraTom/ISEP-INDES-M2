@@ -84,7 +84,7 @@ export default function SourceVid(props) {
         case "youtube":
             let videosrc = props.source.desc.match("v=") != null ? props.source.desc.split("v=")[1] : props.source.desc;
 
-            return (
+            return props.parentComp === "miniature" ? (
                 <>
                     <iframe
                         src={"https://www.youtube.com/embed/" + videosrc + "?controls=0&autoplay=1&mute=1"}
@@ -92,8 +92,15 @@ export default function SourceVid(props) {
                         allow="autoplay; clipboard-write; encrypted-media; gyroscope;"
                         volume="0"
                     ></iframe>
-                    ~
-                    {/*<div id={"miniYT-"+props.source.name} onLoad={onYouTubeIframeAPIReady.bind(this, "YT")}></div> */}
+                </>
+            ) : (
+                <>
+                    <iframe
+                        src={"https://www.youtube.com/embed/" + videosrc + "?controls=1&autoplay=1"}
+                        frameBorder="0"
+                        allow="autoplay; clipboard-write; encrypted-media; gyroscope;"
+                        volume="80"
+                    ></iframe>
                 </>
             );
 
@@ -131,11 +138,7 @@ export default function SourceVid(props) {
             );
 
         default:
-            return props.parentComp === "miniature" ? (
-                <>
-                    <i className="fa fa-plus"></i>
-                </>
-            ) : (
+            return (
                 <>
                     <h2 className="noDisplay">No display selected</h2>
                 </>
