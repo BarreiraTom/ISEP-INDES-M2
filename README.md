@@ -7,7 +7,7 @@ This app was developed in Javascript/NodeJs with the help of the React library.
 
 It is able to access many pre-recorded video and live video stream and display them in a Main screen to be streamed with a 3rd party application.
 
-###2. Current Status (Entrega Intermédia)
+###2. Final Status (Entrega Final)
 
 #####DONE:
 
@@ -15,18 +15,15 @@ It is able to access many pre-recorded video and live video stream and display t
 - Multiple miniature video sources can be selected singularly for the "Live preview".
 - "Activate Playlist" (Sleep mode) Button
 - Live Preview Logo
-
-#####TODO:
-
 - "Live preview" button to open a Live Preview ALONE in a page to be used by a 3rd party Application
-- "Add sources" button for the user to add new sources to a playlists
+- "Add sources" (+) button for the user to add new sources to a playlists
 
 ###3. Instructions
 
 - To install the App it's necessary to run the latest version of the INDES-Broadcaster Application in the "/dist" directory.
 
     ```
-    INDES-Broadcaster Setup 1.0.0.exe
+    INDES-Broadcaster Setup 1.1.0.exe
     ```
 
     The application will open automatically.
