@@ -55,24 +55,6 @@ export default function Page(props) {
         }
     ]);
     const [localVidsList, setLocalVidsList] = useState([
-        {
-            name: "video1",
-            desc: "videos/video1.mp4",
-            type: "local",
-            inUse: false
-        },
-        {
-            name: "video2",
-            desc: "videos/video2.mp4",
-            type: "local",
-            inUse: false
-        },
-        {
-            name: "video3",
-            desc: "videos/video3.mp4",
-            type: "local",
-            inUse: false
-        }
     ]);
 
     //Creation of the StreamerLogo variable
@@ -179,7 +161,7 @@ export default function Page(props) {
             <div className="main-area">
                 <div className="left-area">
                     {usingPortal ? (
-                        <NewWindow onUnload={() => setUsingPortal(false)} title="Live Preview" name="Live Preview">
+                        <NewWindow onUnload={() => setUsingPortal(false)} title="Live Preview" name="Live Preview" features={{height:'720',width:'1280',resizable:'no',title:'Live Preview',name:'Live Preview'}}>
                             <MainVid
                                 mainSource={mainSource}
                                 setMainSource={setMainSource}

@@ -5,11 +5,12 @@ import Webcam from "react-webcam";
 export default function SourceVid(props) {
     const webcamRef = React.useRef(null);
     const [videoNumber, setVideoNumber] = React.useState(0);
+    
     const setCount = () => {
         setVideoNumber(videoNumber + 1);
     };
-    const resetCount = () => {
-        setVideoNumber(0);
+    const resetCount = async () => {
+        await setVideoNumber(0);
     };
 
     const [source, setSources] = useState(props.source);
@@ -57,27 +58,41 @@ export default function SourceVid(props) {
             );
 
         case "sleep":
-            console.log(props.localVidsList);
+            
             const arrVid = [...props.localVidsList];
-            let vid = arrVid[videoNumber].desc;
-            console.log(vid);
-            return (
-                <>
-                    <video
-                        id="local-sleep"
-                        src={vid}
-                        type="video"
-                        controls
-                        autoPlay
-                        onEnded={() => {
-                            setCount();
-                        }}
-                        onError={() => {
-                            resetCount();
-                        }}
-                    ></video>
-                </>
-            );
+            if (arrVid.length>0) {
+                let vid;
+                if (videoNumber>=arrVid.length){
+                    resetCount();
+                    vid = arrVid[0].desc;
+                }else {
+                    vid = arrVid[videoNumber].desc;
+                }
+                
+
+                return (
+                    <>
+                        <video
+                            id="local-sleep"
+                            src={vid}
+                            controls
+                            autoPlay
+                            onEnded={() => {
+                                setCount();
+                            }}
+                            onError={() => {
+                                resetCount();
+                            }}
+                        ></video>
+                    </>
+                );
+            }else{
+                return(<>
+                    <h2 className="noDisplay">No Videos on the Playlist</h2>
+                </>)
+            }
+            
+            break;
 
         case "youtube":
             let videosrc = props.source.desc.match("v=") != null ? props.source.desc.split("v=")[1] : props.source.desc;

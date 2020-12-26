@@ -14,7 +14,8 @@ function createMainWindow(){
         height: 800,
         webPreferences: {
             nativeWindowOpen:true
-        }
+        },
+        autoHideMenuBar:true
     });
     mainWindow.loadURL(
         isDev
