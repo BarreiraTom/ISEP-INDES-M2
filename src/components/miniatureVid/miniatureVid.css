@@ -3,7 +3,6 @@
     overflow-y: hidden;
     overflow-x: auto;
     height: 40%;
-    margin: auto;
     position: relative;
 }
 
@@ -17,7 +16,6 @@
     position: absolute;
     height: min-content;
     width: max-content;
-    margin: auto;
     top: 0;
     bottom: 0;
 }

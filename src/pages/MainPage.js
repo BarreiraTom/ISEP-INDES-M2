@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useCallback } from "react";
-import NewWindow from 'react-new-window'
+import NewWindow from "react-new-window";
 
 import MainVid from "../components/mainVid/mainVid";
 import MiniatureVids from "../components/miniatureVid/miniatureVid";
@@ -14,14 +14,15 @@ export default function Page(props) {
     const [webcamList, setWebcamList] = useState([]);
     const [ipCamList, setIpCamList] = useState([
         {
-            name: 'Phone1', 
+            name: "Phone1",
             desc: `192.168.1.2:8080/video`,
-            type: "ipCam", 
+            type: "ipCam",
             inUse: false
-        },{
-            name: 'Phone2', 
+        },
+        {
+            name: "Phone2",
             desc: `192.168.1.89:8080/video`,
-            type: "ipCam", 
+            type: "ipCam",
             inUse: false
         }
     ]);
@@ -29,12 +30,13 @@ export default function Page(props) {
         {
             name: "eslcsgo",
             desc: "https://www.youtube.com/watch?v=sn6EjlZJzIQ",
-            type: "youtube", 
+            type: "youtube",
             inUse: false
-        },{
+        },
+        {
             name: "lindinho",
             desc: "https://www.youtube.com/watch?v=VG4YEDBYruo",
-            type: "youtube", 
+            type: "youtube",
             inUse: false
         }
     ]);
@@ -42,12 +44,13 @@ export default function Page(props) {
         {
             name: "gaules",
             desc: "gaules",
-            type: "twitch", 
+            type: "twitch",
             inUse: false
-        },{
+        },
+        {
             name: "mibr",
             desc: "mibrtv",
-            type: "twitch", 
+            type: "twitch",
             inUse: false
         }
     ]);
@@ -57,18 +60,21 @@ export default function Page(props) {
             desc: "videos/video1.mp4",
             type: "local",
             inUse: false
-        },{
+        },
+        {
             name: "video2",
             desc: "videos/video2.mp4",
             type: "local",
             inUse: false
-        },{
+        },
+        {
             name: "video3",
             desc: "videos/video3.mp4",
             type: "local",
             inUse: false
         }
     ]);
+
     //Creation of the StreamerLogo variable
     const [liveLogo, setLiveLogo] = useState();
 
@@ -77,15 +83,13 @@ export default function Page(props) {
     //Preset for the Activate Playlist button
     const [miniatureDisabled, setMiniatureDisabled] = useState(false);
 
-    
     const [loading, setLoading] = useState(true);
 
     //Creation of Portal for Live Preview
     const [usingPortal, setUsingPortal] = useState(false);
     const toggleLivePreview = async () => {
-        setUsingPortal(!usingPortal)
-    }
-
+        setUsingPortal(!usingPortal);
+    };
 
     /*
     O que eu estava a tentar fazer aqui era, em vez de utilizar as sources e substituir uma posição 
@@ -99,92 +103,63 @@ export default function Page(props) {
     EDIT: 4AM LOG... :P
      the toggle only seems to work when the webcams update... Updating the whole list... WIERD
     */
-   const toggleMiniature = async (type, pos, state) => {
-    await setLoading(true);
+    const toggleMiniature = async (type, pos, state) => {
+        await setLoading(true);
 
-    switch (type) {
-        case "webcam":
-            let tempWebcam = await webcamList;
-            tempWebcam[pos].inUse = !state;
-            await setWebcamList(tempWebcam);
-            break;
-        case "ipCam":
-            let tempIpCam = await ipCamList;
-            tempIpCam[pos].inUse = !state;
-            await setIpCamList(tempIpCam)
-            break;
-        case "youtube":
-            let tempYt = await youtubeList;
-            tempYt[pos].inUse = !state;
-            await setYoutubeList(tempYt)
-            break;
-        case "twitch":
-            let tempTwitch = await twitchList;
-            tempTwitch[pos].inUse = !state;
-            await setTwitchList(tempTwitch)
-            break;
-        case "local":
-            let tempLocal = await localVidsList;
-            tempLocal[pos].inUse = !state;
-            await setLocalVidsList(tempLocal)
-            break;
-            
-        default:
-            break;
-    }
-    await setLoading(false);
+        switch (type) {
+            case "webcam":
+                let tempWebcam = await webcamList;
+                tempWebcam[pos].inUse = !state;
+                await setWebcamList(tempWebcam);
+                break;
+            case "ipCam":
+                let tempIpCam = await ipCamList;
+                tempIpCam[pos].inUse = !state;
+                await setIpCamList(tempIpCam);
+                break;
+            case "youtube":
+                let tempYt = await youtubeList;
+                tempYt[pos].inUse = !state;
+                await setYoutubeList(tempYt);
+                break;
+            case "twitch":
+                let tempTwitch = await twitchList;
+                tempTwitch[pos].inUse = !state;
+                await setTwitchList(tempTwitch);
+                break;
+            case "local":
+                let tempLocal = await localVidsList;
+                tempLocal[pos].inUse = !state;
+                await setLocalVidsList(tempLocal);
+                break;
 
-}
+            default:
+                break;
+        }
+        await setLoading(false);
+    };
     //Setup of Webcam Playlist
     const handleDevices = async (mediaDevices) => {
         const webcams = await mediaDevices.filter(({ kind }) => kind === "videoinput");
         const tempArray = [];
 
-        await webcams.forEach(async wbcam => {
-            tempArray.push({name: `${wbcam.label}`.replace(" ","_"), desc: `${wbcam.deviceId}` ,type: "webcam", inUse:false})
+        await webcams.forEach(async (wbcam) => {
+            tempArray.push({
+                name: `${wbcam.label}`.replace(" ", "_"),
+                desc: `${wbcam.deviceId}`,
+                type: "webcam",
+                inUse: false
+            });
         });
 
-        setWebcamList([...tempArray])
-    }
+        setWebcamList([...tempArray]);
+    };
 
     useEffect(async () => {
-        const mediaDevs = await navigator.mediaDevices.enumerateDevices()
-        handleDevices(mediaDevs)
+        const mediaDevs = await navigator.mediaDevices.enumerateDevices();
+        handleDevices(mediaDevs);
     }, []);
 
-    // //LEGACY SOURCES
-    // const [sources, setSources] = useState([
-    //     {
-    //         id: "1",
-    //         name: "rocketleague",
-    //         desc: "rocketleague",
-    //         type: "twitch"
-    //     },
-    //     {
-    //         id: "2",
-    //         name: "ipCam",
-    //         desc: "192.168.137.101:8080/video",
-    //         type: "ipCam"
-    //     },
-    //     {
-    //         id: "3",
-    //         name: "Youtube-vid1",
-    //         desc: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
-    //         type: "youtube"
-    //     },
-    //     {
-    //         id: "4",
-    //         name: "webcam",
-    //         desc: "",
-    //         type: "webcam"
-    //     },{
-    //         name: "video",
-    //         desc: "videos/video1.mp4",
-    //         type: "local"
-    //     }
-    // ]);
-
-    
     //This will change the Main Video from one of the Miniature videos
     const changeLiveVid = (src, el) => {
         el.preventDefault();
@@ -204,65 +179,60 @@ export default function Page(props) {
             <div className="main-area">
                 <div className="left-area">
                     {usingPortal ? (
-                        <NewWindow onUnload={() => setUsingPortal(false)} title="Live Preview" name="Live Preview" >
+                        <NewWindow onUnload={() => setUsingPortal(false)} title="Live Preview" name="Live Preview">
                             <MainVid
-                            mainSource={mainSource} 
-                            setMainSource={setMainSource}
-
-                            sources={[
-                                ...webcamList, 
-                                ...ipCamList, 
-                                ...youtubeList, 
-                                ...twitchList, 
-                                ...localVidsList
-                            ].filter(({ inUse }) => inUse === true)} 
-
-                            miniatureDisabled={miniatureDisabled} 
-                            liveLogo={liveLogo}
+                                mainSource={mainSource}
+                                setMainSource={setMainSource}
+                                sources={[
+                                    ...webcamList,
+                                    ...ipCamList,
+                                    ...youtubeList,
+                                    ...twitchList,
+                                    ...localVidsList
+                                ].filter(({ inUse }) => inUse === true)}
+                                miniatureDisabled={miniatureDisabled}
+                                liveLogo={liveLogo}
+                                localVidsList={localVidsList}
                             />
                         </NewWindow>
-                        ) : (
-                            <div className="b4MainVid">
-                                <MainVid
-                                mainSource={mainSource} 
+                    ) : (
+                        <div className="b4MainVid">
+                            <MainVid
+                                mainSource={mainSource}
                                 setMainSource={setMainSource}
-
                                 sources={[
-                                    ...webcamList, 
-                                    ...ipCamList, 
-                                    ...youtubeList, 
-                                    ...twitchList, 
+                                    ...webcamList,
+                                    ...ipCamList,
+                                    ...youtubeList,
+                                    ...twitchList,
                                     ...localVidsList
-                                ].filter(({ inUse }) => inUse === true)} 
-
-                                miniatureDisabled={miniatureDisabled} 
+                                ].filter(({ inUse }) => inUse === true)}
+                                miniatureDisabled={miniatureDisabled}
                                 liveLogo={liveLogo}
-                                />
-                            </div>
+                                localVidsList={localVidsList}
+                            />
+                        </div>
                     )}
                     <MiniatureVids
-
                         webcamList={webcamList}
                         ipCamList={ipCamList}
                         youtubeList={youtubeList}
                         twitchList={twitchList}
                         localVidsList={localVidsList}
-
                         changeLiveVid={changeLiveVid}
                         mainSource={mainSource}
                         MiniDisabled={miniatureDisabled}
                     />
-                </div><div className="right-area">
-                    <Playslists 
-                        //changeMinVid={changeMinVid} 
+                </div>
+                <div className="right-area">
+                    <Playslists
+                        //changeMinVid={changeMinVid}
                         toggleMiniature={toggleMiniature}
-
                         webcamList={webcamList}
                         ipCamList={ipCamList}
                         youtubeList={youtubeList}
                         twitchList={twitchList}
                         localVidsList={localVidsList}
-
                         setIpCamList={setIpCamList}
                         setYoutubeList={setYoutubeList}
                         setTwitchList={setTwitchList}
@@ -271,10 +241,8 @@ export default function Page(props) {
                     <ActionButton
                         setMiniatureDisabled={setMiniatureDisabled}
                         miniatureDisabled={miniatureDisabled}
-
                         liveLogo={liveLogo}
                         setLiveLogo={setLiveLogo}
-
                         usingPortal={usingPortal}
                         toggleLivePreview={toggleLivePreview}
                     ></ActionButton>

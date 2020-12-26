@@ -4,12 +4,12 @@ import Webcam from "react-webcam";
 
 export default function SourceVid(props) {
     const webcamRef = React.useRef(null);
-    const [videoNumber, setVideoNumber] = React.useState(1);
+    const [videoNumber, setVideoNumber] = React.useState(0);
     const setCount = () => {
         setVideoNumber(videoNumber + 1);
     };
     const resetCount = () => {
-        setVideoNumber(1);
+        setVideoNumber(0);
     };
 
     const [source, setSources] = useState(props.source);
@@ -57,18 +57,16 @@ export default function SourceVid(props) {
             );
 
         case "sleep":
-            // fs detetar ficheiros no resource/videos
-            // acaba um video e começa outro
-            // acaba a lista, recomeça
-            //listReactFiles("videos/").then(files => console.log(files))
-            // require the module
-            var vid = "videos/video" + videoNumber + ".mp4";
+            console.log(props.localVidsList);
+            const arrVid = [...props.localVidsList];
+            let vid = arrVid[videoNumber].desc;
+            console.log(vid);
             return (
                 <>
                     <video
                         id="local-sleep"
                         src={vid}
-                        type="video/mp4"
+                        type="video"
                         controls
                         autoPlay
                         onEnded={() => {

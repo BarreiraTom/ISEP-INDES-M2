@@ -40,7 +40,7 @@ export default function MainVid(props) {
       )}
       <div className="mainVideo">
         <img src={props.liveLogo} className="liveLogo"/>
-        <SrcVideo source={mainSource} parentComp={component} />
+        <SrcVideo source={mainSource} parentComp={component} localVidsList={props.localVidsList} />
       </div>
     </>
   );
