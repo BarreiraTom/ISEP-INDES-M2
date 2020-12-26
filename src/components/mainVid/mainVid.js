@@ -6,10 +6,6 @@ import "./mainVid.css";
 import SrcVideo from "../sourceVid/sourceVid";
 
 export default function MainVid(props) {
-  //MIRROR IN DEBUG (it doesn't want to work)
-  const [usingPortal, setUsingPortal] = React.useState(false);
-//   const [ref, reflection] = useMirror({ className: "Frame" });
-
   const [mainSource, setMainSource] = useState(props.mainSource);
   const component = "mainVid";
 
@@ -35,16 +31,14 @@ export default function MainVid(props) {
     }
   }, [props.sources]);
 
-
   return (
-    <>
+    <>  
       {mainSource.name ? (
         <h3 className="mainDesc">{mainSource.name}</h3>
       ) : (
         <h3 className="mainDesc">No Display selected</h3>
       )}
-
-      <div onClick={() => setUsingPortal(true)} className="mainVideo">
+      <div className="mainVideo">
         <img src={props.liveLogo} className="liveLogo"/>
         <SrcVideo source={mainSource} parentComp={component} />
       </div>

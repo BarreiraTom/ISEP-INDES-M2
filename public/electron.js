@@ -7,18 +7,14 @@ const isDev = require("electron-is-dev");
 let mainWindow;
 let liveWindow;
 
-// function createMainWindow() {
-//     mainWindow = new BrowserWindow({ width: 900, height: 680 });
-//     mainWindow.loadURL(
-//         isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`
-//     );
-//     mainWindow.on("closed", () => (mainWindow = null));
-// }
-
+//Main Window
 function createMainWindow(){
     mainWindow = new BrowserWindow({
         width: 1270, 
         height: 800,
+        webPreferences: {
+            nativeWindowOpen:true
+        }
     });
     mainWindow.loadURL(
         isDev
@@ -27,8 +23,10 @@ function createMainWindow(){
     );
 
     mainWindow.on("closed", () => {mainWindow = null; liveWindow = null});
+    
 }
 
+//Live Preview Window - NOT USED
 function createLiveWindow(){
     liveWindow = new BrowserWindow({
         width: 400, 

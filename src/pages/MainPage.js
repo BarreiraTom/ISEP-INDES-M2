@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useCallback } from "react";
+import NewWindow from 'react-new-window'
 
 import MainVid from "../components/mainVid/mainVid";
 import MiniatureVids from "../components/miniatureVid/miniatureVid";
 import Playslists from "../components/playlistsComponent/paylists";
-
 import ActionButton from "../components/actionButtons/actionButton";
+
 import "../resources/css/index.css";
 
 export default function Page(props) {
@@ -78,6 +79,13 @@ export default function Page(props) {
 
     
     const [loading, setLoading] = useState(true);
+
+    //Creation of Portal for Live Preview
+    const [usingPortal, setUsingPortal] = useState(false);
+    const toggleLivePreview = async () => {
+        setUsingPortal(!usingPortal)
+    }
+
 
     /*
     O que eu estava a tentar fazer aqui era, em vez de utilizar as sources e substituir uma posição 
@@ -195,21 +203,43 @@ export default function Page(props) {
         <>
             <div className="main-area">
                 <div className="left-area">
-                    <MainVid
-                        mainSource={mainSource} 
-                        setMainSource={setMainSource}
+                    {usingPortal ? (
+                        <NewWindow onUnload={() => setUsingPortal(false)} title="Live Preview" name="Live Preview" >
+                            <MainVid
+                            mainSource={mainSource} 
+                            setMainSource={setMainSource}
 
-                        sources={[
-                            ...webcamList, 
-                            ...ipCamList, 
-                            ...youtubeList, 
-                            ...twitchList, 
-                            ...localVidsList
-                        ].filter(({ inUse }) => inUse === true)} 
+                            sources={[
+                                ...webcamList, 
+                                ...ipCamList, 
+                                ...youtubeList, 
+                                ...twitchList, 
+                                ...localVidsList
+                            ].filter(({ inUse }) => inUse === true)} 
 
-                        miniatureDisabled={miniatureDisabled} 
-                        liveLogo={liveLogo}
-                        />
+                            miniatureDisabled={miniatureDisabled} 
+                            liveLogo={liveLogo}
+                            />
+                        </NewWindow>
+                        ) : (
+                            <div className="b4MainVid">
+                                <MainVid
+                                mainSource={mainSource} 
+                                setMainSource={setMainSource}
+
+                                sources={[
+                                    ...webcamList, 
+                                    ...ipCamList, 
+                                    ...youtubeList, 
+                                    ...twitchList, 
+                                    ...localVidsList
+                                ].filter(({ inUse }) => inUse === true)} 
+
+                                miniatureDisabled={miniatureDisabled} 
+                                liveLogo={liveLogo}
+                                />
+                            </div>
+                    )}
                     <MiniatureVids
 
                         webcamList={webcamList}
@@ -244,6 +274,9 @@ export default function Page(props) {
 
                         liveLogo={liveLogo}
                         setLiveLogo={setLiveLogo}
+
+                        usingPortal={usingPortal}
+                        toggleLivePreview={toggleLivePreview}
                     ></ActionButton>
                 </div>
             </div>

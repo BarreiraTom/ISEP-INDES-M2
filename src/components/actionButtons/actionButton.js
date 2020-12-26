@@ -20,10 +20,13 @@ export default function ActionButton(props) {
       <button className="playListBtn" onClick={setMiniDisabled.bind(this)}>
         {props.miniatureDisabled ? "Deactivate Playlist" : "Activate Playlist"}
       </button>
-      <div class="upload-btn-wrapper playListBtn">
+      <div className="upload-btn-wrapper playListBtn">
         <button>Live Preview Logo Submition</button>
         <input type="file" name="myfile" accept="image/*" onChange={submitLiveLogo.bind(this)} />
       </div>
+      <button className="playListBtn" onClick={props.toggleLivePreview.bind()}>
+        {props.usingPortal ? "Deactivate Live Preview" : "Activate Live Preview"}
+      </button>
     </div>
   );
 }

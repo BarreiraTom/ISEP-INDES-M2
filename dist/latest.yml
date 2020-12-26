@@ -1,8 +1,8 @@
 version: 1.0.0
 files:
   - url: INDES-Broadcaster-Setup-1.0.0.exe
-    sha512: qPWZ+Bxg5/XrGJT4ZlZXu6pZtAcmNtbx09oUtT0fAKSp7OtSjEKkidpu6tuPkcszABhFwmwVd/67+ZaLWmKzwg==
-    size: 80171673
+    sha512: dKO9EX9HUlMoypmMH5qqJ0oYnuS2kSacUCmE5elUhc8saMlVD/dh4A+rnXu1NIZUoatkPMxWc9VclAhbtKaVmQ==
+    size: 80219638
 path: INDES-Broadcaster-Setup-1.0.0.exe
-sha512: qPWZ+Bxg5/XrGJT4ZlZXu6pZtAcmNtbx09oUtT0fAKSp7OtSjEKkidpu6tuPkcszABhFwmwVd/67+ZaLWmKzwg==
-releaseDate: '2020-12-19T20:17:13.906Z'
+sha512: dKO9EX9HUlMoypmMH5qqJ0oYnuS2kSacUCmE5elUhc8saMlVD/dh4A+rnXu1NIZUoatkPMxWc9VclAhbtKaVmQ==
+releaseDate: '2020-12-26T02:57:12.219Z'
